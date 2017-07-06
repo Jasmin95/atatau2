@@ -52,6 +52,21 @@ $numRows = $row['count'];
     return $numRows;
 }
 
+function conta (){
+
+    $dbpath = __DIR__ . '/mydb.sqlite';
+    $dbh = new SQLite3($dbpath);
+
+
+    $res = $dbh->query("SELECT count (*) as count from posts WHERE author == ('" . $_SESSION['username']. "') ");
+
+    $row = $res->fetchArray();
+    $num = $row['count'];
+
+
+    return $num;
+}
+
 function create_post() 
 {
 	if (empty($_POST["message"]))
@@ -187,6 +202,7 @@ if (isset ($_POST["modifica"])){
 		<div id="welcome_container">
 			<div id="welcome">
 				<span id="welcome_message">È bello rivederti, <?php echo $_SESSION['fullname']  ; ?>!</span>
+                <span id="welcome_message">Fino ad oggi hai pubblicato <?php echo $num = conta()  ; ?> posts, continua così!</span>
 			</div>
 		</div>  
 		<br>
