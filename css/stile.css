@@ -1,0 +1,239 @@
+/* color theme (Birdfolio Blues by purcell.biz) */
+:root {
+  --red: #FF530D;
+  --offwhite: #EFEFEF;
+  --blue1: #BDD4DE;
+  --blue2: #3F5765;
+  --blue3: #2B3A42;
+  --offwhite2: #E5E5D6;
+  --red2: #FF350D;
+}
+
+body {
+	font-family: Dosis, sans-serif;
+	font-size: 12px;
+	background: var(--offwhite);
+}
+
+/* board.php */
+
+#login_table{
+	border: none;
+	text-align: left;
+	margin-top: 85px;
+	width: 33.33%; 
+	margin-right: auto;
+	margin-left: auto;
+	height: 25%;
+
+}
+
+		td {
+			padding: 8px;
+			font-size: 18px;
+			column-span: 2;
+		}
+
+.error{
+	color: red;
+}
+
+/* header.php */
+#header{
+	text-align: center;
+	background: var(--blue3);
+	height: 70px;
+	overflow: hidden;
+}
+
+#header_text{
+	font-size: 46px;
+	margin: auto;
+	padding: 7px;
+	font-weight: bolder;
+	color: var(--red);
+}
+
+#header_container{
+	width: 100%;
+	position: fixed;
+	top: 0px;
+}
+
+		/* header.php >>> barra navigazione */
+			.navigation{
+			    background-color: var(--blue3);
+  				overflow: hidden;
+			}
+
+			#navigation_container{
+				position: relative;
+				top: 0px;
+			}
+
+			.navigation a{
+   				float: left;
+  				display: block;
+    			color: #f2f2f2;
+    			text-align: center;
+    			padding: 14px 20px;
+    			text-decoration: none;
+   				font-size: 17px;
+			}
+
+			.navigation a:hover{
+   				background-color: var(--blue2);
+   				color: var(--offwhite);
+			}
+
+			.navigation a.active{
+    			background-color: var(--blue2);
+    			color: var(--offwhite);
+			}
+
+			.navigation #logout_link:hover{
+   				background-color: var(--red);
+   				color: var(--offwhite);
+			}
+
+			.navigation #logout_link{
+				float: right;
+			}
+
+
+/* message.php */
+
+#welcome_container{
+	width: 100%;
+	position: relative;
+	top: 0px;
+}
+
+#welcome{
+	text-align: left;
+	background: #DDD;
+	height: 30px;
+	font-size: 20px;
+	padding-left: 20px;
+	padding-top: 3px;
+	background: var(--offwhite);
+}
+
+#welcome_message{
+	font-size: 17px;
+}
+
+#message_table{
+	border: none;
+	text-align: left;
+	margin-top: 85px;
+	margin: 0 auto;
+	border-collapse: collapse;
+	font-size: 20px;
+	position: relative;
+}
+
+#message_table_row:nth-child(odd){
+	background: var(--offwhite2);
+}
+
+td{
+	font-size: 17px;
+	color: var(--blue3);
+}
+
+tr{
+	font-size: 17px;
+}
+
+
+#username{
+	color: red;
+	padding-left: 20px;
+}
+
+#message_area{
+	width: 80%;
+	border: none;
+	float: left;
+	height: 60px;
+	resize: none;
+	background: #dddd22;
+	font-size: 17px;
+	background: white;
+	padding-left: 20px;
+}
+
+#message_submit{
+	width: 20%;
+	border: none;
+	height: 60px;
+	background: #ddd;
+	font-size: 17px;
+	background: var(--red);
+
+}
+
+/* index.php */
+
+#description{
+	font-size: 30px;
+	text-align: center;
+	position: relative;
+
+}
+
+#description_container{
+	width: 100%;
+	background: var(--offwhite2);
+	position: absolute;
+	top: 35%;
+	height: 200px;
+	line-height: 200px;
+	vertical-align: middle;
+
+}
+
+#logout_button{
+	background: var(--red);
+	top: 35%;
+	height: 100px;
+	line-height: 100px;
+	width: 100%;
+	vertical-align: middle;
+	font-size: 35px;
+	color: var(--offwhite);
+	border: none;
+	position: absolute;
+}
+
+#logout_button:hover{
+	background: var(--red2);
+}
+
+/* footer */
+
+#footer{
+	bottom: 0;
+	position: absolute relative;
+	text-align: center;
+   bottom:0;
+   width:100%;
+   height:60px;	
+   margin-top: 35%;
+}
+
+/* register.php */
+
+#register_table{
+	width: 309;
+	border: none;
+	text-align: left;
+	margin-top: 50px;
+	width: 33.33%; 
+	margin-right: auto;
+	margin-left: auto;
+	height: 50%;
+}
+
+
