@@ -32,7 +32,7 @@ $dispfullname = "";
 
 
 
-// Visualizzazione del messaggio di info sul tag HTML
+// Se la variabile di sessione info è settata a non null, falla vedere come un messaggio di info. e svuota la variabile session info
 if(isset($_SESSION['info']) && $_SESSION['info'] != "")
 {
   $infomsg = $_SESSION['info'];
