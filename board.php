@@ -2,25 +2,25 @@
 error_reporting(E_ALL);
 ini_set('display_errors','On');
 
-//Start session
+
 session_start();
 
-// Initial declaration of all the session variables that are used
+
 if(isset($_SESSION['username']))
 {
 	header('Location: index.php');
 	exit();
 }
 
-// Variable declaration
+
 $emptyuser = "";
 $emptypass = "";
 $infomsg = "";
 
-// Actions to be performed when Login button is clicked
+
 if (isset($_POST["login"]))
 {
-    // This is to validate whether the Mandatory fields are filled are not
+
    if (empty($_POST["username"]) || empty($_POST["password"]))
    {
       if (empty($_POST["username"]))
@@ -32,17 +32,17 @@ if (isset($_POST["login"]))
         $emptypass = "* Devi inserire una password";  
       }
    }
-   else //blocco connessione database
+   else //connessione database
    {
-		// Retrieving the valid login credentials and stored in a variable
+
 		$username = $_POST["username"];
-		$password = md5($_POST["password"]);  // md5 methodology is used for password encryption
+		$password = md5($_POST["password"]);
 	  
 		$dbpath = __DIR__ . '/mydb.sqlite';
 		
         $dbh = new SQLite3($dbpath);
-		
-        // Validating the login credentials by sending a database query
+
+
         $stmt = $dbh->prepare("SELECT * FROM users WHERE username='". $username ."'");
         $execquery = $stmt->execute();
 
@@ -57,12 +57,12 @@ if (isset($_POST["login"]))
 			{
 				if($acc['password'] == $password)
 				{
-					// Assign values to the session variables
+					// Assegno le varibili alle variabili di sessione
 					$_SESSION['username'] = $username;
 					$_SESSION['fullname'] = $acc['fullname'];
 					$_SESSION['status'] = "Active";
 					session_write_close();
-					// Call the next page that is Message Board page
+					// login andato -> vado alla prossima pagina
 					header("location: message.php");
 					exit();
 				}
@@ -70,14 +70,14 @@ if (isset($_POST["login"]))
 					$_SESSION['info'] = "Account o password errati";
 				}
 			}
-			else {  // Counter would remain 0 if it is invalid login
+			else {
 				$_SESSION['info'] = "Account o password errati";
 			}
         }
     }
 }
 
-// Various informations are passed from different pages, all the messages are verified here and displayed according on the html tag
+// Vengono diffuse varie informazioni da diverse pagine, tutti i messaggi vengono verificati qui e mostrati in base al tag html
 if(isset($_SESSION['info']))
 {
   $infomsg = $_SESSION['info'];

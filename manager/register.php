@@ -1,23 +1,22 @@
 <?php
 
-// Using these variable to prefil the entered data in case the givin data has some error
-
-
-// This is to validate whether the Mandatory fields are filled are not
+// Prendo i dati e li verifico
 if (empty($_POST["username"])) {
-    $emptyuser = "* Username is required";
+    $emptyuser = "* Inserire Username ";
 } else if (empty($_POST["password"])) {
-    $emptypass = "* Password is required";
+    $emptypass = "* Inserire Password";
 } else if (empty($_POST["repassword"])) {
-    $repass = "* Retype Password is required";
+    $repass = "* Ri inserire  Password";
 } else if (empty($_POST["fullname"])) {
-    $emptyname = "* Full Name is required";
+    $emptyname = "* Inserire il Fullname";
 } else if (empty($_POST["email"])) {
-    $emptyemail = "* Email is required";
+    $emptyemail = "* Inserire email";
 } else if ($_POST["password"] != $_POST["repassword"]) {
-    $repass = "* Password does not match";  // If the enter passsword does not match with Reentered Password
+    $repass = "* Le password non coindicono";
 } else {
-// Getting the values given as a input for Registration
+
+// memorizzo in variabili
+
     $username = ($_POST["username"]);
     $password = md5($_POST["password"]);
     $fullname = $_POST["fullname"];
@@ -26,20 +25,20 @@ if (empty($_POST["username"])) {
     $dbpath = '../mydb.sqlite';
     $dbh = new SQLite3($dbpath);
 
-// Query to validate if the given username already exists or not
+// verifico se l utente esite già
     $stmt = $dbh->prepare("SELECT * FROM users WHERE username='" . $username . "'");
     $execquery = $stmt->execute();
     if ($execquery == false) {
-        $_SESSION['info'] = "Unable to process the query, Please try again";
+        $_SESSION['info'] = "Riprova, la query non è andata a abuon fine";
     } else {
         $acc = $execquery->fetchArray(SQLITE3_ASSOC);
 
         if ($acc != false) {
-            $_SESSION['info'] = "Username already exists";
+            $_SESSION['info'] = "Username già esistente";
         } else {
-// Else Proceed with the insertion of record
-// Inserting the record to the table users
-//$stmt = $dbh->prepare("INSERT into users values('" . $username . "','" . $password . "')");
+
+// Else inserisco
+
             $stmt = $dbh->prepare("INSERT into users values('" . $username . "','" . $password . "','" . $fullname . "','" . $email . "')");
             $res = $stmt->execute();
 
@@ -47,8 +46,8 @@ if (empty($_POST["username"])) {
                 $_SESSION['info'] = "Impossibile creare account";
                 echo("qualcosa non va");
             } else {
-                $_SESSION['info'] = "New User created successfully";
-                echo("YEah funge!");
+                $_SESSION['info'] = "Nuovo utente creato con successo";
+                echo("Registrazione andata a buon fine!");
                 session_write_close();
                 exit();
             }

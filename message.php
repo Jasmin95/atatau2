@@ -5,6 +5,7 @@ ini_set('display_errors','On');
 
 session_start();
 
+// se non è settato un user lo porti alla login
 if(!isset($_SESSION['username']))
 {
   header("Location: board.php");
@@ -16,7 +17,7 @@ function get_posts() {
 	$dbpath = __DIR__ . '/mydb.sqlite';
 	$dbh = new SQLite3($dbpath);
       
-    // Select query to retrieve the list of messages
+    // get tutti i messaggi
     $stmt = $dbh->prepare('SELECT * from posts ORDER BY created DESC');
     $result = $stmt->execute();
 	
@@ -24,7 +25,7 @@ function get_posts() {
 		return [];
 	}
 
-    // Listing the messages into a table based on the Result Set
+    // Elenco i messaggi in un array
     $posts = [];
 	while ($post = $result->fetchArray(SQLITE3_ASSOC)) {
 		$posts[] = $post;
@@ -77,7 +78,6 @@ function create_post()
 	$postedby = $_SESSION['username'];  // user di sessione
 	$message = $_POST["message"];  // input mex
 
-	// Connect with the database
 	$dbpath = __DIR__ . "/mydb.sqlite";
 	$dbh = new SQLite3($dbpath);
 	$stmt = $dbh->prepare("INSERT into posts(content, created, author) values('" . $message . "', datetime() ,'" . $postedby . "')");
@@ -88,14 +88,14 @@ function create_post()
 	
 	return 0;
 }
-//$post_modificare = "";
+
 $stmt2 = "";
 $stmtstring ="";
 
 
 function modifica() 
 {   
-	$newmessage = $_POST["newmessage"];  // Get the message
+	$newmessage = $_POST["newmessage"];  // Get newmessage
     
 
 	if (empty($_POST["newmessage"]))
@@ -178,10 +178,8 @@ if (isset ($_POST["modifica"])){
 		case 1:
 			$errormsg = "Impossibile modificare";
 			break;
-		case 2:
-			$errormsg = "entrato in due";
-			break;
-		;}
+
+		}
 }
 
 

@@ -18,7 +18,7 @@ if(!isset($_SESSION['info']))
 	$_SESSION['info'] = "";
 }
 
-// Declaring the variables
+
 $emptyuser = "";
 $emptypass = "";
 $repass = "";
@@ -32,7 +32,7 @@ $dispfullname = "";
 
 
 
-// Displaying the information message on to the HTML tag
+// Visualizzazione del messaggio di info sul tag HTML
 if(isset($_SESSION['info']) && $_SESSION['info'] != "")
 {
   $infomsg = $_SESSION['info'];
